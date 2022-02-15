@@ -16,5 +16,21 @@ def route_all_blogs():
 
 
 @app.route("/blogs/<id>", methods=["GET"])
-def route_all_blog(id: str):
+def route_get_blog(id: str):
     return jsonify(get_blog(int(id)))
+
+
+@app.route("/blogs/<id>", methods=["POST"])
+def route_update_blog(id: str):
+    payload = request.get_json()
+    return jsonify(update_blog(int(id), payload))
+
+
+@app.route("/authors")
+def route_all_authors():
+    return jsonify(all_authors())
+
+
+@app.route("/authors/<id>", methods=["GET"])
+def route_get_author(id: str):
+    return jsonify(get_author(int(id)))
